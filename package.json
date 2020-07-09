@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "element-ui": "^2.13.2",
+    "less": "^3.11.3",
+    "less-loader": "^6.2.0",
     "nuxt": "^2.13.0"
   },
   "devDependencies": {}
