@@ -10,6 +10,7 @@
     "serve": "nuxt serve"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.11.0",
     "element-ui": "^2.13.2",
     "less": "^3.11.3",
     "less-loader": "^6.2.0",
