@@ -99,6 +99,9 @@ export default {
             data: this.form
           }).then(res => {
             console.log(res.data);
+            if (res.data.token) {
+              this.$store.commit("user/setUserInfo", res.data);
+            }
           });
         } else {
           // 如果失败, 尝试将 objNotValid 告诉你那个字段失败的信息打印出来

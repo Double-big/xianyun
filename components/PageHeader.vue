@@ -19,11 +19,11 @@
       <!-- 登录/用户信息 -->
       <el-row type="flex" align="middle">
         <!-- 如果用户存在则展示用户信息，用户数据来自store -->
-        <!-- <el-dropdown v-if="false">
+        <el-dropdown v-if="$store.state.user.userInfo.token">
           <el-row type="flex" align="middle" class="el-dropdown-link">
             <nuxt-link to="#">
-              <img src="http://157.122.54.189:9093/images/pic_sea.jpeg" />
-              用户名
+              <img :src="$axios.defaults.baseURL + $store.state.user.userInfo.user.defaultAvatar" />
+              {{$store.state.user.userInfo.user.nickname}}
             </nuxt-link>
             <i class="el-icon-caret-bottom el-icon--right"></i>
           </el-row>
@@ -35,10 +35,11 @@
               <div @click="handleLogout">退出</div>
             </el-dropdown-item>
           </el-dropdown-menu>
-        </el-dropdown> -->
+        </el-dropdown>
 
         <!-- 不存在用户信息展示登录注册链接 -->
-        <nuxt-link to="/user/login" class="account-link" >登录 / 注册</nuxt-link>
+        <!-- {{$store.state.user.username}} -->
+        <nuxt-link v-else to="/user/login" class="account-link">登录 / 注册</nuxt-link>
       </el-row>
     </el-row>
   </header>
@@ -49,6 +50,15 @@ export default {
     // 用户退出
     handleLogout() {}
   }
+  //测试
+  // mounted() {
+  //   // setUsername() {
+
+  //   // }
+  //   setTimeout(() => {
+  //     this.$store.commit("user/setUsername", "哈哈哈");
+  //   }, 1000);
+  // }
 };
 </script>
 <style scoped lang="less">
