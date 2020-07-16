@@ -106,6 +106,7 @@ export default {
           // console.log('开始登陆');
 
           // promise 是否 resolve 跟 .then 执行没有影响
+          
           // 等到resolve成功了,后面函数才接上去
           var promise = this.$store.dispatch("user/login", this.form);
 
