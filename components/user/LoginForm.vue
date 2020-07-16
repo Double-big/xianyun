@@ -104,10 +104,16 @@ export default {
           //   }
           // });
           // console.log('开始登陆');
-          // promise  return axios 出来, 这里用  .then 接收,  return res  ,这里的用res接收, 如果没有return res ,这里的res则为空值
-          this.$store.dispatch("user/login", this.form).then(res => {
-            console.log("这里是 promise return 的 res", res.data);
-          });
+
+          // promise 是否 resolve 跟 .then 执行没有影响
+          // 等到resolve成功了,后面函数才接上去
+          var promise = this.$store.dispatch("user/login", this.form);
+
+          setTimeout(() => {
+            promise.then(res => {
+              console.log("这里是 promise return 的 res", res.data);
+            });
+          }, 2000);
         } else {
           // 如果失败, 尝试将 objNotValid 告诉你那个字段失败的信息打印出来
           console.log(objNotValid);
