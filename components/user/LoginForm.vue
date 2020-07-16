@@ -76,38 +76,10 @@ export default {
   methods: {
     handleLoginSubmit() {
       // 验证表单
-      //   写法1
-      //   this.$refs["form"].validate(valid => {
-      //     // 为true表示没有错误
-      //     if (valid) {
-      //       this.$axios({
-      //         url: "/accounts/login",
-      //         method: "POST",
-      //         data: this.form
-      //       }).then(res => {
-      //         console.log(res.data);
-      //       });
-      //     }
-      //   });
-      // 写法2
+
       this.$refs.form.validate((isValid, objNotValid) => {
         //   第一个参数代表是否验证成功, 只有成功的状态, 才能发出请求
         if (isValid) {
-          // this.$axios({
-          //   url: "/accounts/login",
-          //   method: "POST",
-          //   data: this.form
-          // }).then(res => {
-          //   console.log(res.data);
-          //   if (res.data.token) {
-          //     this.$store.commit("user/setUserInfo", res.data);
-          //   }
-          // });
-          // console.log('开始登陆');
-
-          // promise 是否 resolve 跟 .then 执行没有影响
-          
-          // 等到resolve成功了,后面函数才接上去
           var promise = this.$store.dispatch("user/login", this.form);
 
           setTimeout(() => {
@@ -120,23 +92,6 @@ export default {
           console.log(objNotValid);
         }
       });
-      // 方法3, 也可以用 promise ,这是element封装好的
-      //   this.$refs.form
-      //     .validate()
-      //     .then(isValid => {
-      //       if (valid) {
-      //         this.$axios({
-      //           url: "/accounts/login",
-      //           method: "POST",
-      //           data: this.form
-      //         }).then(res => {
-      //           console.log(res.data);
-      //         });
-      //       }
-      //     })
-      //     .catch(err => {
-      //       console.log(err);
-      //     });
     },
     clearMsg(propName) {
       this.$refs.form.clearValidate(propName);
