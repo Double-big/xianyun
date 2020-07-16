@@ -41,9 +41,15 @@ export default {
    */
   plugins: [
     "@/plugins/element-ui",
-    "@/plugins/myplugins"
-],
+    // "@/plugins/localStorage" ,// 这种写法不行因为会在nodejs端编译时就执行,但是这个关于本地储存的插件只能在浏览器端运行
 
+    { 
+      // 这个对象中 src 属性就是之前的字符串, 也就是插件的文件地址
+      src: "@/plugins/localStorage", 
+      // 另外添加一个 ssr 属性设置为 false 就可以禁止这个插件在服务端运行 
+      ssr: false 
+    }
+  ],
 
   /*
    ** Nuxt.js modules
