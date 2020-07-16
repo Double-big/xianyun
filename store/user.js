@@ -30,7 +30,7 @@ export const actions = {
   //   写法二
   //解构写法, 将commit 从 store 中解构出来可以直接用
   login({ commit }, data) {
-    this.$axios({
+    return this.$axios({
       url: "/accounts/login",
       method: "POST",
       data
@@ -40,6 +40,7 @@ export const actions = {
         //   this.$store.dispach("user/setUserInfo", res.data);
         commit("setUserInfo", res.data);
       }
+      return res;
     });
   }
 };
