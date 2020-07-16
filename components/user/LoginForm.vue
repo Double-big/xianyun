@@ -93,16 +93,18 @@ export default {
       this.$refs.form.validate((isValid, objNotValid) => {
         //   第一个参数代表是否验证成功, 只有成功的状态, 才能发出请求
         if (isValid) {
-          this.$axios({
-            url: "/accounts/login",
-            method: "POST",
-            data: this.form
-          }).then(res => {
-            console.log(res.data);
-            if (res.data.token) {
-              this.$store.commit("user/setUserInfo", res.data);
-            }
-          });
+          // this.$axios({
+          //   url: "/accounts/login",
+          //   method: "POST",
+          //   data: this.form
+          // }).then(res => {
+          //   console.log(res.data);
+          //   if (res.data.token) {
+          //     this.$store.commit("user/setUserInfo", res.data);
+          //   }
+          // });
+          // console.log('开始登陆');
+          this.$store.dispatch("user/login", this.form);
         } else {
           // 如果失败, 尝试将 objNotValid 告诉你那个字段失败的信息打印出来
           console.log(objNotValid);
