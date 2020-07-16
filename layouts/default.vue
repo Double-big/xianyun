@@ -3,22 +3,23 @@
     <!-- 内容占位组件 -->
     <PageHeader />
     <nuxt />
-    <Footer />
+
+    <PageFooter />
   </div>
 </template>
 
 <script>
 import PageHeader from "@/components/PageHeader";
-import Footer from "@/components/Footer";
+import PageFooter from "@/components/PageFooter";
 export default {
   components: {
     PageHeader,
-    Footer
+    PageFooter
   }
 };
 </script>
 
-<style lang="less">
+<style lang="less" >
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
