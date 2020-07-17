@@ -88,12 +88,12 @@ export default {
         console.log(res.data);
         const suggestions = res.data.data.map(city => {
           return {
-            value: city.name
+            value: city.name,
+            code: city.sort
           };
         });
         showList(suggestions);
       });
-      showList([{ value: "广州" }, { value: "上海" }, { value: "北京" }]);
     },
 
     // 目标城市输入框获得焦点时触发
@@ -108,7 +108,8 @@ export default {
         console.log(res.data);
         const suggestions = res.data.data.map(city => {
           return {
-            value: city.name
+            value: city.name,
+            code: city.sort
           };
         });
         showList(suggestions);
@@ -116,10 +117,14 @@ export default {
     },
 
     // 出发城市下拉选择时触发
-    handleDepartSelect(item) {},
+    handleDepartSelect(item) {
+      this.form.departCode = item.code;
+    },
 
     // 目标城市下拉选择时触发
-    handleDestSelect(item) {},
+    handleDestSelect(item) {
+      this.form.destCode = item.code;
+    },
 
     // 确认选择日期时触发
     handleDate(value) {},
