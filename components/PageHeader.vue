@@ -52,15 +52,7 @@ export default {
       this.$store.commit("user/clearUserInfo");
     }
   }
-  //测试
-  // mounted() {
-  //   // setUsername() {
-
-  //   // }
-  //   setTimeout(() => {
-  //     this.$store.commit("user/setUsername", "哈哈哈");
-  //   }, 1000);
-  // }
+  
 };
 </script>
 <style scoped lang="less">
