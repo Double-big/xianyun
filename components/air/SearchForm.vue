@@ -79,13 +79,40 @@ export default {
     // 出发城市输入框获得焦点时触发
     // value 是选中的值，showList是回调函数，接收要展示的列表
     queryDepartSearch(value, showList) {
+      this.$axios({
+        url: "/airs/city",
+        params: {
+          name: value
+        }
+      }).then(res => {
+        console.log(res.data);
+        const suggestions = res.data.data.map(city => {
+          return {
+            value: city.name
+          };
+        });
+        showList(suggestions);
+      });
       showList([{ value: "广州" }, { value: "上海" }, { value: "北京" }]);
     },
 
     // 目标城市输入框获得焦点时触发
     // value 是选中的值，showList是回调函数，接收要展示的列表
     queryDestSearch(value, showList) {
-      showList([{ value: "澳门" }, { value: "江苏" }, { value: "湖北" }]);
+      this.$axios({
+        url: "/airs/city",
+        params: {
+          name: value
+        }
+      }).then(res => {
+        console.log(res.data);
+        const suggestions = res.data.data.map(city => {
+          return {
+            value: city.name
+          };
+        });
+        showList(suggestions);
+      });
     },
 
     // 出发城市下拉选择时触发
