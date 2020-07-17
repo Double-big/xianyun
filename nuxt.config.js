@@ -48,7 +48,8 @@ export default {
       src: "@/plugins/localStorage", 
       // 另外添加一个 ssr 属性设置为 false 就可以禁止这个插件在服务端运行 
       ssr: false 
-    }
+    },
+    "@/plugins/axios"
   ],
 
   /*
