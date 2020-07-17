@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   data() {
     return {
@@ -76,10 +77,8 @@ export default {
     // tab切换时触发
     handleSearchTab(item, index) {},
 
-    // 出发城市输入框获得焦点时触发
-    // value 是选中的值，showList是回调函数，接收要展示的列表
-    queryDepartSearch(value, showList) {
-      this.$axios({
+    getCityList(value) {
+      return this.$axios({
         url: "/airs/city",
         params: {
           name: value
@@ -92,27 +91,23 @@ export default {
             code: city.sort
           };
         });
-        showList(suggestions);
+        return suggestions;
+      });
+    },
+
+    // 出发城市输入框获得焦点时触发
+    // value 是选中的值，showList是回调函数，接收要展示的列表
+    queryDepartSearch(value, showList) {
+      this.getCityList(value).then(res => {
+        showList(res);
       });
     },
 
     // 目标城市输入框获得焦点时触发
     // value 是选中的值，showList是回调函数，接收要展示的列表
     queryDestSearch(value, showList) {
-      this.$axios({
-        url: "/airs/city",
-        params: {
-          name: value
-        }
-      }).then(res => {
-        console.log(res.data);
-        const suggestions = res.data.data.map(city => {
-          return {
-            value: city.name,
-            code: city.sort
-          };
-        });
-        showList(suggestions);
+      this.getCityList(value).then(res => {
+        showList(res);
       });
     },
 
@@ -127,7 +122,9 @@ export default {
     },
 
     // 确认选择日期时触发
-    handleDate(value) {},
+    handleDate(value) {
+      this.form.departDate = moment(value).format("YYYY-MM-DD");
+    },
 
     // 触发和目标城市切换时触发
     handleReverse() {},
