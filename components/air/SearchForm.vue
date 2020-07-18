@@ -79,7 +79,16 @@ export default {
   },
   methods: {
     // tab切换时触发
-    handleSearchTab(item, index) {},
+    handleSearchTab(item, index) {
+      if (index === 1) {
+        this.$confirm("目前暂不支持往返，请使用单程选票！", "提示", {
+          confirmButtonText: "确定",
+          showCancelButton: false,
+          type: "warning"
+          // cancelButtonText: "666"
+        });
+      }
+    },
 
     getCityList(value) {
       return this.$axios({
@@ -91,7 +100,7 @@ export default {
         console.log(res.data);
         const suggestions = res.data.data.map(city => {
           return {
-            value: city.name.replace(/市$/,''),
+            value: city.name.replace(/市$/, ""),
             code: city.sort
           };
         });
@@ -134,11 +143,24 @@ export default {
     },
 
     // 触发和目标城市切换时触发
-    handleReverse() {},
+    handleReverse() {
+      const oldDestcity = this.form.destCity;
+      const oldDestCode = this.form.destCode;
+
+      this.form.destCity = this.form.departCity;
+      this.form.desttCode = this.form.departCode;
+
+      this.form.departCity = oldDestcity;
+      this.form.departCode = oldDestCode;
+    },
 
     // 提交表单是触发
     handleSubmit() {
       console.log(this.form);
+      this.$router.push({
+        path: "/air/flights",
+        query: this.form
+      });
     }
   },
   mounted() {}
