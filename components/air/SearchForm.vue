@@ -91,7 +91,7 @@ export default {
         console.log(res.data);
         const suggestions = res.data.data.map(city => {
           return {
-            value: city.name,
+            value: city.name.replace(/市$/,''),
             code: city.sort
           };
         });
