@@ -19,6 +19,8 @@
         <!-- select 点击选中建议项时触发 -->
         <el-autocomplete
           v-model="form.departCity"
+          :trigger-on-focus="false"
+          :highlight-first-item="true"
           :fetch-suggestions="queryDepartSearch"
           placeholder="请搜索出发城市"
           @select="handleDepartSelect"
@@ -28,6 +30,8 @@
       <el-form-item label="到达城市">
         <el-autocomplete
           v-model="form.destCity"
+          :trigger-on-focus="false"
+          :highlight-first-item="true"
           :fetch-suggestions="queryDestSearch"
           placeholder="请搜索到达城市"
           @select="handleDestSelect"
@@ -91,7 +95,10 @@ export default {
             code: city.sort
           };
         });
-        return suggestions;
+        // 过滤掉不带有code的城市
+        return suggestions.filter(city => {
+          return city.code;
+        });
       });
     },
 
